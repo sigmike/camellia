@@ -1,0 +1,12 @@
+# How to build the Ruby wrapper for Camellia
+
+cd ..
+make dist
+cd ext
+swig -ruby -c++ camellia_ruby.i
+ruby extconf.rb
+make clean
+make
+cp camellia.so ../lib
+sudo make install
+sudo ruby install.rb

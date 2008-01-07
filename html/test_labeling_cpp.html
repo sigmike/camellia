@@ -1,0 +1,61 @@
+<html>
+<head>
+  <title>../../CamelliaLib/html/test_labeling.cpp</title>
+<style type="text/css">
+.source .literal { color:#660066; }
+.source .comment { color:green; }
+.source .keyword { color:blue; }
+.source .preprocessor { color:purple; }
+</style>
+</head>
+<body>
+<div style="color:blue;margin-top:1em;font-family:sans-serif">../../CamelliaLib/html/test_labeling.cpp</div>
+<pre class="source">
+  1| <span class="preprocessor">#include</span> &lt;iostream.h&gt;
+  2| <span class="preprocessor">#include</span> &lt;stdlib.h&gt;
+  3| <span class="preprocessor">#include</span> <span class="literal">&quot;camellia.h&quot;</span>
+  4| 
+  5| <span class="keyword">extern</span> <span class="literal">&quot;C&quot;</span> <span class="keyword">int</span> sortfunc(<span class="keyword">const</span> <span class="keyword">void</span> *a, <span class="keyword">const</span> <span class="keyword">void</span> *b)
+  6| {
+  7|     CamBlobInfo *ba=(CamBlobInfo*)a;
+  8|     CamBlobInfo *bb=(CamBlobInfo*)b;
+  9|     <span class="keyword">return</span> bb-&gt;surface-ba-&gt;surface;
+ 10| }
+ 11| 
+ 12| <span class="keyword">void</span> cpp_example_labeling()
+ 13| {
+ 14|     CamImage image,yuv;
+ 15|     
+ 16|     <span class="comment">// Load picture alfa156.bmp</span>
+ 17|     image.load_bmp(<span class="literal">&quot;resources/alfa156.bmp&quot;</span>);    
+ 18|     image.to_yuv(yuv);
+ 19|     
+ 20|     <span class="comment">// Consider V plane only</span>
+ 21|     CamROI roi(3,0,0,yuv.width,yuv.height);
+ 22|     yuv.set_roi(roi);
+ 23|     
+ 24|     <span class="comment">// Threshold and encode</span>
+ 25|     CamRLEImage thr;
+ 26|     yuv.encode_threshold(thr,150);
+ 27| 
+ 28|     <span class="comment">// Labeling</span>
+ 29|     CamBlobs blobs;
+ 30|     thr.labeling(blobs);
+ 31|     
+ 32|     <span class="comment">// Print info</span>
+ 33|     std::cout&lt;&lt;blobs.nbBlobs&lt;&lt;<span class="literal">&quot; blobs detected&quot;</span>&lt;&lt;std::endl;
+ 34|     
+ 35|     <span class="comment">// Draw rectangles on all detected blobs</span>
+ 36|     <span class="keyword">for</span> (<span class="keyword">int</span> i=0;i&lt;blobs.nbBlobs;i++) {
+ 37|         image.draw_rectangle(blobs[i].left, blobs[i].top,
+ 38|             blobs[i].left+blobs[i].width-1, blobs[i].top+blobs[i].height-1,
+ 39|             CAM_RGB(255,0,0));
+ 40|     }
+ 41|     image.save_bmp(<span class="literal">&quot;output/alfa156_labeling.bmp&quot;</span>);
+ 42|     
+ 43|     <span class="comment">// Find out the biggest blob</span>
+ 44|     qsort((<span class="keyword">void</span>*)blobs.blobInfo,blobs.nbBlobs,<span class="keyword">sizeof</span>(CamBlobInfo),sortfunc);
+ 45|     std::cout&lt;&lt;<span class="literal">&quot;The bigger blob is at position (&quot;</span>&lt;&lt;blobs[0].cx&lt;&lt;<span class="literal">&quot;,&quot;</span>&lt;&lt;blobs[0].cy&lt;&lt;<span class="literal">&quot;) and its surface is &quot;</span>&lt;&lt;blobs[0].surface&lt;&lt;<span class="literal">&quot; pixels&quot;</span>&lt;&lt;std::endl;
+ 46| }
+</pre></body>
+</html>

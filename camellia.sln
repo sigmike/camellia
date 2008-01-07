@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C++ Express 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cam_benchmark", "cam_benchmark.vcproj", "{12D61B87-E0F2-465C-8BF6-FDA3417EDF8B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{36348D01-E637-477A-85DF-D17DE464F8E5} = {36348D01-E637-477A-85DF-D17DE464F8E5}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cam_demo", "cam_demo.vcproj", "{ECC1CF56-DA60-43DD-98F8-C48FD6F10C94}"
+	ProjectSection(ProjectDependencies) = postProject
+		{36348D01-E637-477A-85DF-D17DE464F8E5} = {36348D01-E637-477A-85DF-D17DE464F8E5}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "camellia", "camellia.vcproj", "{36348D01-E637-477A-85DF-D17DE464F8E5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "swig_ruby", "ext\swig_ruby.vcproj", "{1E66BAD7-06D4-49C5-BB12-FA4FB48C85A6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cam_yalefaces", "cam_yalefaces.vcproj", "{AFAAD51F-AB07-4772-98C2-B3FF874DB21C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{36348D01-E637-477A-85DF-D17DE464F8E5} = {36348D01-E637-477A-85DF-D17DE464F8E5}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12D61B87-E0F2-465C-8BF6-FDA3417EDF8B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{12D61B87-E0F2-465C-8BF6-FDA3417EDF8B}.Debug|Win32.Build.0 = Debug|Win32
+		{12D61B87-E0F2-465C-8BF6-FDA3417EDF8B}.Release|Win32.ActiveCfg = Release|Win32
+		{12D61B87-E0F2-465C-8BF6-FDA3417EDF8B}.Release|Win32.Build.0 = Release|Win32
+		{ECC1CF56-DA60-43DD-98F8-C48FD6F10C94}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ECC1CF56-DA60-43DD-98F8-C48FD6F10C94}.Debug|Win32.Build.0 = Debug|Win32
+		{ECC1CF56-DA60-43DD-98F8-C48FD6F10C94}.Release|Win32.ActiveCfg = Release|Win32
+		{ECC1CF56-DA60-43DD-98F8-C48FD6F10C94}.Release|Win32.Build.0 = Release|Win32
+		{36348D01-E637-477A-85DF-D17DE464F8E5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{36348D01-E637-477A-85DF-D17DE464F8E5}.Debug|Win32.Build.0 = Debug|Win32
+		{36348D01-E637-477A-85DF-D17DE464F8E5}.Release|Win32.ActiveCfg = Release|Win32
+		{36348D01-E637-477A-85DF-D17DE464F8E5}.Release|Win32.Build.0 = Release|Win32
+		{1E66BAD7-06D4-49C5-BB12-FA4FB48C85A6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1E66BAD7-06D4-49C5-BB12-FA4FB48C85A6}.Debug|Win32.Build.0 = Debug|Win32
+		{1E66BAD7-06D4-49C5-BB12-FA4FB48C85A6}.Release|Win32.ActiveCfg = Release|Win32
+		{1E66BAD7-06D4-49C5-BB12-FA4FB48C85A6}.Release|Win32.Build.0 = Release|Win32
+		{AFAAD51F-AB07-4772-98C2-B3FF874DB21C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AFAAD51F-AB07-4772-98C2-B3FF874DB21C}.Debug|Win32.Build.0 = Debug|Win32
+		{AFAAD51F-AB07-4772-98C2-B3FF874DB21C}.Release|Win32.ActiveCfg = Release|Win32
+		{AFAAD51F-AB07-4772-98C2-B3FF874DB21C}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

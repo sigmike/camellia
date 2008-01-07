@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>test_mask.cpp</title>
+<style type="text/css">
+.source .literal { color:#660066; }
+.source .comment { color:green; }
+.source .keyword { color:blue; }
+.source .preprocessor { color:purple; }
+</style>
+</head>
+<body>
+<div style="color:blue;margin-top:1em;font-family:sans-serif">test_mask.cpp</div>
+<pre class="source">
+  1| <span class="preprocessor">#include</span> <span class="literal">&quot;camellia.h&quot;</span>
+  2| 
+  3| <span class="keyword">void</span> cpp_example_mask()
+  4| {
+  5|     CamImage source,dest,mask;
+  6|     CamRLEImage encoded_mask;
+  7|     
+  8|     <span class="comment">// Load picture chess.pgm</span>
+  9|     source.load_pgm(<span class="literal">&quot;resources/chess.pgm&quot;</span>);    
+ 10|     mask.alloc(source.width,source.height);
+ 11| 
+ 12|     <span class="comment">// Draw a filled circle in mask</span>
+ 13|     mask.set(0);
+ 14|     mask.draw_circle(mask.width/2,mask.height/2,50,255);
+ 15|     mask.fill_color(mask.width/2,mask.height/2,255);
+ 16| 
+ 17|     <span class="comment">// Encode the mask and associate it to the source image</span>
+ 18|     mask.encode(encoded_mask);
+ 19|     source.set_mask(encoded_mask);
+ 20|     
+ 21|     <span class="comment">// Copy the mask</span>
+ 22|     encoded_mask.inverse();
+ 23|     dest=source; <span class="comment">// Copies only the mask!</span>
+ 24| 
+ 25|     <span class="comment">// And then compute a sobel inside</span>
+ 26|     encoded_mask.inverse();
+ 27|     source.sobel_v_abs(dest); <span class="comment">// Sobel only on the mask </span>
+ 28|     
+ 29|     dest.save_pgm(<span class="literal">&quot;output/chess_sobel_mask.pgm&quot;</span>);
+ 30| }
+ 31| 
+ 32| 
+</pre></body>
+</html>

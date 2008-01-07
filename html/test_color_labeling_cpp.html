@@ -1,0 +1,62 @@
+<html>
+<head>
+  <title>test_color_labeling.cpp</title>
+<style type="text/css">
+.source .literal { color:#660066; }
+.source .comment { color:green; }
+.source .keyword { color:blue; }
+.source .preprocessor { color:purple; }
+</style>
+</head>
+<body>
+<div style="color:blue;margin-top:1em;font-family:sans-serif">test_color_labeling.cpp</div>
+<pre class="source">
+  1| <span class="preprocessor">#include</span> &lt;iostream&gt;
+  2| <span class="preprocessor">#include</span> <span class="literal">&quot;camellia.h&quot;</span>
+  3| 
+  4| <span class="keyword">void</span> cpp_example_color_labeling()
+  5| {
+  6|     CamImage source,YUV;
+  7|     CamRLEImage encoded;
+  8|     CamBlobs blobs;
+  9|     CamTable clusters;
+ 10| 
+ 11|     <span class="comment">// Load picture alfa156.bmp</span>
+ 12|     source.load_bmp(<span class="literal">&quot;resources/alfa156.bmp&quot;</span>);
+ 13|     source.to_yuv(YUV);
+ 14| 
+ 15|     <span class="comment">// Set the color clusters</span>
+ 16|     <span class="keyword">const</span> <span class="keyword">int</span> limits[3*6]={
+ 17|     <span class="comment">//  Ymin Ymax Umin Umax Vmin Vmax</span>
+ 18|         0,   60,  0,   255, 0,   255, <span class="comment">// Black</span>
+ 19|         230, 255, 0,   255, 0,   255, <span class="comment">// White</span>
+ 20|         0,   255, 0,   255, 140, 255  <span class="comment">// Red</span>
+ 21|     };
+ 22|     clusters.set(limits,18);
+ 23|     <span class="keyword">const</span> <span class="keyword">int</span> cluster_colors[3]={CAM_RGB(0,0,0),CAM_RGB(255,255,255),CAM_RGB(255,0,0)};
+ 24|     
+ 25|     <span class="comment">// Threshold and encode</span>
+ 26|     encoded.encode_color(YUV,clusters);
+ 27|     std::cout&lt;&lt;<span class="literal">&quot;Number of runs : &quot;</span>&lt;&lt;encoded.nbRuns&lt;&lt;std::endl;
+ 28|     
+ 29|     <span class="comment">// Labeling</span>
+ 30|     encoded.labeling(blobs);
+ 31|     std::cout&lt;&lt;blobs.nbBlobs&lt;&lt;<span class="literal">&quot; blobs detected&quot;</span>&lt;&lt;std::endl;
+ 32| 
+ 33|     <span class="comment">// Print and draw the results </span>
+ 34|     <span class="keyword">for</span> (<span class="keyword">int</span> i=0;i&lt;blobs.nbBlobs;i++) {
+ 35|         std::cout&lt;&lt;<span class="literal">&quot;Blob #&quot;</span>&lt;&lt;i&lt;&lt;<span class="literal">&quot; : Val=&quot;</span>&lt;&lt;blobs.blobInfo[i].value&lt;&lt; \
+ 36|             <span class="literal">&quot; (&quot;</span>&lt;&lt;blobs.blobInfo[i].left&lt;&lt;<span class="literal">&quot;,&quot;</span>&lt;&lt;blobs.blobInfo[i].top&lt;&lt;<span class="literal">&quot;,&quot;</span>&lt;&lt; \
+ 37|             blobs.blobInfo[i].width&lt;&lt;<span class="literal">&quot;,&quot;</span>&lt;&lt;blobs.blobInfo[i].height&lt;&lt;<span class="literal">&quot;) Surface=&quot;</span>&lt;&lt;blobs.blobInfo[i].surface&lt;&lt; \
+ 38|             std::endl;
+ 39|         source.draw_rectangle(blobs.blobInfo[i].left, blobs.blobInfo[i].top,
+ 40|             blobs.blobInfo[i].left+blobs.blobInfo[i].width-1,
+ 41|             blobs.blobInfo[i].top+blobs.blobInfo[i].height-1,
+ 42|             cluster_colors[blobs.blobInfo[i].value-1]);
+ 43|     }
+ 44| 
+ 45|     <span class="comment">// Save the result</span>
+ 46|     source.save_bmp(<span class="literal">&quot;output/alfa156_color_labeling.bmp&quot;</span>);
+ 47| }
+</pre></body>
+</html>

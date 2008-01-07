@@ -1,0 +1,41 @@
+<html>
+<head>
+  <title>test_mask.rb</title>
+<style type="text/css">
+.source .literal { color:#660066; }
+.source .comment { color:green; }
+.source .keyword { color:blue; }
+.source .preprocessor { color:purple; }
+</style>
+</head>
+<body>
+<div style="color:blue;margin-top:1em;font-family:sans-serif">test_mask.rb</div>
+<pre class="source">
+  1| require <span class="literal">'rubygems'</span>
+  2| require_gem <span class="literal">'camellia'</span>
+  3| include Camellia
+  4|     
+  5| source=CamImage.new
+  6| 
+  7| <span class="comment"># load picture chess.pgm</span>
+  8| source.load_pgm(<span class="literal">&quot;resources/chess.pgm&quot;</span>)
+  9| mask=CamImage.new(source.width,source.height)
+ 10| 
+ 11| <span class="comment"># draw a filled circle in mask</span>
+ 12| mask.set!(0)
+ 13| mask.draw_circle(mask.width<span class="literal">/2,mask.height/</span>2,50,255)
+ 14| mask.fill_color(mask.width<span class="literal">/2,mask.height/</span>2,255)
+ 15| 
+ 16| <span class="comment"># encode the mask and associate it to the source image</span>
+ 17| encoded_mask=mask.encode
+ 18| source.mask=encoded_mask
+ 19| encoded_mask.inverse!
+ 20| dest=CamImage.new
+ 21| source.copy(dest) <span class="comment"># copies only the mask! not like dup or clone!</span>
+ 22| 
+ 23| <span class="comment"># and then compute a sobel inside</span>
+ 24| encoded_mask.inverse!
+ 25| source.sobel_v_abs(dest) <span class="comment"># sobel only on the mask </span>
+ 26| dest.save_pgm(<span class="literal">&quot;output/ruby_chess_sobel_mask.pgm&quot;</span>)
+</pre></body>
+</html>

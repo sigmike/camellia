@@ -1,0 +1,44 @@
+<html>
+<head>
+  <title>test_labeling.rb</title>
+<style type="text/css">
+.source .literal { color:#660066; }
+.source .comment { color:green; }
+.source .keyword { color:blue; }
+.source .preprocessor { color:purple; }
+</style>
+</head>
+<body>
+<div style="color:blue;margin-top:1em;font-family:sans-serif">test_labeling.rb</div>
+<pre class="source">
+  1| require <span class="literal">'rubygems'</span>
+  2| require_gem <span class="literal">'camellia'</span>
+  3| include Camellia
+  4|     
+  5| image=CamImage.new
+  6| 
+  7| <span class="comment"># load picture alfa156.bmp</span>
+  8| image.load_bmp(<span class="literal">&quot;resources/alfa156.bmp&quot;</span>)
+  9| yuv=image.to_yuv
+ 10| 
+ 11| <span class="comment"># consider only the V plane (red)</span>
+ 12| yuv.set_roi(CamROI.new(3,0,0,yuv.width,yuv.height)) 
+ 13| 
+ 14| <span class="comment"># threshold and encode</span>
+ 15| thr=yuv.encode_threshold(150)
+ 16| 
+ 17| <span class="comment"># labeling</span>
+ 18| blobs=thr.labeling!
+ 19| puts <span class="literal">&quot;#{blobs.nb_blobs} blobs detected&quot;</span>
+ 20| 
+ 21| <span class="comment"># draw rectangle on all detected blobs </span>
+ 22| blobs.each {|b| image.draw_rectangle(b.left,b.top,b.left+b.width-1,b.top+b.height-1,cam_rgb(255,0,0))}
+ 23| 
+ 24| <span class="comment"># save the resulting picture</span>
+ 25| image.save_bmp(<span class="literal">&quot;output/ruby_alfa156_labeling.bmp&quot;</span>)
+ 26| 
+ 27| <span class="comment"># find out the biggest blob</span>
+ 28| sorted=blobs.sort {|a,b| b.surface&lt;=&gt;a.surface}
+ 29| puts <span class="literal">&quot;The bigger blob is at position (#{sorted[0].cx},#{sorted[0].cy}) and its surface is #{sorted[0].surface}&quot;</span>
+</pre></body>
+</html>

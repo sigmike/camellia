@@ -1,0 +1,29 @@
+2007-06-19 Bruno STEUX <Bruno.Steux@ensmp.fr>
+
+    * Changed version number to 2.6.2
+    * Added camHistogramEqualisation function
+    * Added ROI and mask support to YUV functions
+    * Added RGB to HLS color conversion function
+    * Added Harris corner detector
+    * Fixed bug in linear filtering on signed images
+    * Fixed bug in morphological filtering on signed images
+    * Added local maximum detector function
+
+2007-05-03 Bruno STEUX <Bruno.Steux@ensmp.fr>
+
+    * Changed version number to 2.6.1
+    * Corrected average computation in camMeasures (error when using masks)
+
+2007-03-28 Bruno STEUX <Bruno.Steux@ensmp.fr>
+
+    * New release : 2.6.0
+    * Added support for autoconf/automake/libtools
+    * Added safety test in RLE functions
+    * Fixed a big bug with 16-bits image processing
+
+2006-08-28 Bruno STEUX <Bruno.Steux@ensmp.fr>
+
+    * Added BGR images support
+    * Added DirectShow camera capture support
+    * Added Video4Linux camera capture support (thread safe on Ruby)
+    * RGBX images are now aligned on 4 bytes boundaries

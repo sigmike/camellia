@@ -1,0 +1,52 @@
+<html>
+<head>
+  <title>test_color_labeling.rb</title>
+<style type="text/css">
+.source .literal { color:#660066; }
+.source .comment { color:green; }
+.source .keyword { color:blue; }
+.source .preprocessor { color:purple; }
+</style>
+</head>
+<body>
+<div style="color:blue;margin-top:1em;font-family:sans-serif">test_color_labeling.rb</div>
+<pre class="source">
+  1| require <span class="literal">'rubygems'</span>
+  2| require_gem <span class="literal">'camellia'</span>
+  3| include Camellia
+  4| 
+  5| <span class="comment"># load picture alfa156.bmp</span>
+  6| image=CamImage.new
+  7| image.load_bmp(<span class="literal">&quot;resources/alfa156.bmp&quot;</span>)
+  8| yuv=image.to_yuv
+  9| 
+ 10| <span class="comment"># set color clusters</span>
+ 11| clusters=CamTable.new
+ 12| clusters.set([
+ 13|   <span class="comment"># Ymin Ymax Umin Umax Vmin Vmax</span>
+ 14|     0,   60,  0,   255, 0,   255, <span class="comment"># Black</span>
+ 15|     230, 255, 0,   255, 0,   255, <span class="comment"># White</span>
+ 16|     0,   255, 0,   255, 140, 255  <span class="comment"># Red</span>
+ 17| ])
+ 18| cluster_colors=[cam_rgb(0,0,0),cam_rgb(255,255,255),cam_rgb(255,0,0)]
+ 19| 
+ 20| <span class="comment"># threshold and encode</span>
+ 21| encoded=yuv.encode_color(clusters)
+ 22| puts <span class="literal">&quot;Number of runs : #{encoded.nb_runs}&quot;</span>
+ 23|  
+ 24| <span class="comment"># labeling</span>
+ 25| blobs=encoded.labeling!    
+ 26| puts <span class="literal">&quot;#{blobs.nb_blobs} blobs detected&quot;</span>
+ 27|  
+ 28| <span class="comment"># print and deaw the results </span>
+ 29| i=0
+ 30| blobs.each {|b|
+ 31|   puts <span class="literal">&quot;Blob #{i} : Val=#{b.value} (#{b.top},#{b.left},#{b.width},#{b.height}) Surface=#{b.surface}&quot;</span>
+ 32|   image.draw_rectangle(b.left,b.top,b.left+b.width-1,b.top+b.height-1,cluster_colors[b.value-1])
+ 33|   i=i+1
+ 34| }
+ 35|  
+ 36| <span class="comment"># save the result</span>
+ 37| image.save_bmp(<span class="literal">&quot;output/ruby_alfa156_labeling.bmp&quot;</span>)
+</pre></body>
+</html>
