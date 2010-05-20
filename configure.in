@@ -24,6 +24,7 @@ fi
 
 AC_LANG_C
 AC_PROG_CC
+AC_PROG_CXX
 AC_PROG_MAKE_SET
 
 AC_HEADER_STDC
@@ -31,3 +32,5 @@ AC_CHECK_HEADERS(linux/videodev.h)
 AC_CHECK_LIB(m, sqrt)
 
 AC_OUTPUT(Makefile src/Makefile)
+
+AC_CONFIG_MACRO_DIR([m4])

@@ -1,6 +1,8 @@
 AUTOMAKE_OPTIONS = gnu
 SUBDIRS = src
 
+ACLOCAL_AMFLAGS=-I m4
+
 EXTRA_DIST = src/*_code.c src/*_table*.c src/*_code_*.c
 bin_PROGRAMS = cam_demo cam_yalefaces cam_myobjects
 cam_demo_SOURCES = cam_demo.c cam_demo_cpp.cpp
