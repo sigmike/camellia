@@ -28,6 +28,17 @@
 
   ==========================================================================
 
+    Ruby
+      To build the extension:
+        cd ext
+        ruby extconf.rb
+        make
+      
+      To build the Linux gem:
+        gem build ext/camellia-linux.gemspec
+
+  ==========================================================================
+
     Copyright (c) 2002-2007, Ecole des Mines de Paris - Centre de Robotique
     All rights reserved.
 
