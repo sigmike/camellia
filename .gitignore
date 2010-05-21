@@ -23,5 +23,13 @@ src/.libs/
 src/Makefile
 src/Makefile.in
 src/*.lo
-src/*.o
+*.o
 *.gem
+*.deb
+cam_demo
+cam_myobjects
+cam_yalefaces
+description-pak
+doc-pak/
+src/libCamellia.la
+backup-*-pre-camellia.tgz
