@@ -24,3 +24,4 @@ src/Makefile
 src/Makefile.in
 src/*.lo
 src/*.o
+*.gem
