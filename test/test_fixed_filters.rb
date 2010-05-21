@@ -1,6 +1,5 @@
-require 'test/unit'
-require 'lib/camellia'
-include Camellia
+require File.join(File.dirname(__FILE__), 'test_helper')
+
 class TestFixedFilters < Test::Unit::TestCase
   def test_fixed_filters
     source=CamImage.new

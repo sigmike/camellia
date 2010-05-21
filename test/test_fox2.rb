@@ -1,10 +1,7 @@
-require 'rubygems'
-require_gem 'fxruby'
-include Fox
+require File.join(File.dirname(__FILE__), 'test_helper')
 
-require_gem 'camellia'
-require 'camellia-fox.rb'
-include Camellia
+require 'fxruby'
+include Fox
 
 class ImageWindow < FXMainWindow
 

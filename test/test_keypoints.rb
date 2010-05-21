@@ -1,7 +1,5 @@
-require 'test/unit'
-require 'lib/camellia'
-include Camellia
-require 'rubygems'
+require File.join(File.dirname(__FILE__), 'test_helper')
+
 require 'gnuplot'
 
 class TestKeypoints < Test::Unit::TestCase

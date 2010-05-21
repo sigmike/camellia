@@ -1,6 +1,5 @@
-require 'test/unit'
-require 'lib/camellia'
-include Camellia
+require File.join(File.dirname(__FILE__), 'test_helper')
+
 class TestWatershed < Test::Unit::TestCase
   def test_watershed
     [["lsun",60],

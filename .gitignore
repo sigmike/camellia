@@ -34,3 +34,4 @@ doc-pak/
 src/libCamellia.la
 backup-*-pre-camellia.tgz
 *.so
+output/*

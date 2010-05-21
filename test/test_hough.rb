@@ -1,6 +1,5 @@
-require 'test/unit'
-require 'lib/camellia'
-include Camellia
+require File.join(File.dirname(__FILE__), 'test_helper')
+
 class TestHough < Test::Unit::TestCase
   def test_hough
     image=CamImage.new(100,100)
